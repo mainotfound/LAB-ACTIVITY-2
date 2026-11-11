@@ -1,10 +1,15 @@
-
 public class Main {
 
     public static void printDetails(Vehicle vehicle) {
         vehicle.displayInfo();
         System.out.println("Age: " + vehicle.calculateAge() + " years");
         System.out.println("Is Vintage? " + vehicle.isVintage());
+        
+        // Calling abstract methods to demonstrate implementation
+        vehicle.moveForward();
+        vehicle.moveBackwards();
+        vehicle.moveLeft();
+        vehicle.moveRight();
     }
 
     public static void main(String[] args) {
@@ -22,8 +27,7 @@ public class Main {
 
         System.out.println();
 
-        vehicle = new Motorcycle("Yamaha", "Tmax V3", 2026,
-                                 "Basta Modagan");
+        vehicle = new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan");
         printDetails(vehicle);
 
 
@@ -36,11 +40,10 @@ public class Main {
         printDetails(new Truck("Ford", "F-150", 2020, 6));
         System.out.println();
 
-        printDetails(new Motorcycle("Yamaha", "Tmax V3", 2026,
-                                   "Basta Modagan"));
+        printDetails(new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan"));
 
 
-        // DEMO 3: Polymorphic Array
+        // DEMO 3: Polymorphic Array (Lab Requirement: use to print/use all abstract methods on each subclass)[cite: 2]
         System.out.println("\n=== 3. Polymorphic Array ===");
 
         Vehicle[] vehicles = {
@@ -48,8 +51,7 @@ public class Main {
             new Car("Tesla", "Model 3", 2023, 4),
             new Car("Ford", "Mustang", 1969, 2),
             new Truck("Ford", "F-150", 2020, 6),
-            new Motorcycle("Yamaha", "Tmax V3", 2026,
-                           "Basta Modagan")
+            new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan")
         };
 
         for (int i = 0; i < vehicles.length; i++) {
