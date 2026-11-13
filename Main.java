@@ -1,62 +1,43 @@
 public class Main {
 
-    public static void printDetails(Vehicle vehicle) {
-        vehicle.displayInfo();
-        System.out.println("Age: " + vehicle.calculateAge() + " years");
-        System.out.println("Is Vintage? " + vehicle.isVintage());
-        
-        // Calling abstract methods to demonstrate implementation
-        vehicle.moveForward();
-        vehicle.moveBackwards();
-        vehicle.moveLeft();
-        vehicle.moveRight();
+    // Helper method for Serviceable interface (outside main)
+    public static void performService(Serviceable item) {
+        item.service();
     }
 
     public static void main(String[] args) {
 
-        // DEMO 1: Parent reference holding child objects
-        System.out.println("=== 1. Parent Reference ===");
+        // 7. Serviceable polymorphic array containing vehicles and a Printer
+        System.out.println("=== Serviceable Array Demo ===");
+        Serviceable[] serviceableItems = {
+            new Car("Toyota", "Corolla", 2018, 4),
+            new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan"),
+            new Truck("Ford", "F-150", 2020, 6),
+            new Printer()
+        };
 
-        Vehicle vehicle = new Car("Toyota", "Corolla", 2018, 4);
-        printDetails(vehicle);
+        for (int i = 0; i < serviceableItems.length; i++) {
+            System.out.print("Item " + (i + 1) + " -> ");
+            performService(serviceableItems[i]);
+        }
 
         System.out.println();
 
-        vehicle = new Truck("Ford", "F-150", 2020, 6);
-        printDetails(vehicle);
-
-        System.out.println();
-
-        vehicle = new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan");
-        printDetails(vehicle);
-
-
-        // DEMO 2: Method Parameter
-        System.out.println("\n=== 2. Method Parameter ===");
-
-        printDetails(new Car("Toyota", "Corolla", 2018, 4));
-        System.out.println();
-
-        printDetails(new Truck("Ford", "F-150", 2020, 6));
-        System.out.println();
-
-        printDetails(new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan"));
-
-
-        // DEMO 3: Polymorphic Array (Lab Requirement: use to print/use all abstract methods on each subclass)[cite: 2]
-        System.out.println("\n=== 3. Polymorphic Array ===");
-
+        // 8. Vehicle polymorphic array testing displayInfo and move methods
+        System.out.println("=== Vehicle Array Demo ===");
         Vehicle[] vehicles = {
             new Car("Toyota", "Corolla", 2018, 4),
-            new Car("Tesla", "Model 3", 2023, 4),
-            new Car("Ford", "Mustang", 1969, 2),
             new Truck("Ford", "F-150", 2020, 6),
             new Motorcycle("Yamaha", "Tmax V3", 2026, "Basta Modagan")
         };
 
         for (int i = 0; i < vehicles.length; i++) {
             System.out.println("\n--- Vehicle " + (i + 1) + " ---");
-            printDetails(vehicles[i]);
+            vehicles[i].displayInfo();
+            vehicles[i].moveForward();
+            vehicles[i].moveBackwards();
+            vehicles[i].moveLeft();
+            vehicles[i].moveRight();
         }
     }
 }
